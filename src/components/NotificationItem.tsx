@@ -2,12 +2,19 @@ import React, { ReactNode, useState } from "react";
 
 interface Props {
   image: String;
-  message: String;
-  time: String;
+  name: String;
+  action: String;
+  timeElapsed: String;
   isRead: boolean;
 }
 
-const NotificationItem = ({ image, message, time, isRead }: Props) => {
+const NotificationItem = ({
+  image,
+  name,
+  action,
+  timeElapsed,
+  isRead,
+}: Props) => {
   const [readStatus, setReadStatus] = useState(false);
 
   const handleClick = () => {
@@ -27,13 +34,13 @@ const NotificationItem = ({ image, message, time, isRead }: Props) => {
         />
         <div className="notif-descr-container">
           <p className="notif-descr">
-            <span className="notif-msg">Full name </span>
-            {message}
+            <span className="notif-msg">{name} &nbsp;</span>
+            {action}
             <span
               className={readStatus || isRead ? "" : "unread-symbol"}
             ></span>
           </p>
-          <p className="notif-time-elapsed">{time}</p>
+          <p className="notif-time-elapsed">{timeElapsed}</p>
         </div>
       </div>
     </>

@@ -1,5 +1,6 @@
 import { Fragment, SetStateAction, useState } from "react";
 import NotificationItem from "./NotificationItem";
+import Records from "../records.json";
 
 const NotificationPage = () => {
   let [readStatus, setReadStatus] = useState(false);
@@ -19,54 +20,17 @@ const NotificationPage = () => {
         </a>
       </div>
 
-      <div>
-        <NotificationItem
-          image={"avatar-mark-webber.webp"}
-          message={
-            "Mark Webber reacted to your recent post My first tournament today!"
-          }
-          time={"1m ago"}
-          isRead={readStatus}
-        />
-        <NotificationItem
-          image={"avatar-angela-gray.webp"}
-          message={"Angela Gray followed you"}
-          time={"1 day ago"}
-          isRead={readStatus}
-        />
-        <NotificationItem
-          image={"avatar-jacob-thompson.webp"}
-          message={"Jacob Thompson has joined your group Chess Club"}
-          time={"5m ago"}
-          isRead={readStatus}
-        />
-        <NotificationItem
-          image={"avatar-rizky-hasanuddin.webp"}
-          message={"Rizky Hasanuddin sent you a private message"}
-          time={"5m ago"}
-          isRead={readStatus}
-        />
-        <NotificationItem
-          image={"avatar-kimberly-smith.webp"}
-          message={"Kimberly Smith commented on your picture"}
-          time={"1 week ago"}
-          isRead={readStatus}
-        />
-        <NotificationItem
-          image={"avatar-nathan-peterson.webp"}
-          message={
-            "Aathan Peterson reacted to your recent post 5 end-game strategies to increase your win rate"
-          }
-          time={"2 weeks ago"}
-          isRead={readStatus}
-        />
-        <NotificationItem
-          image={"avatar-anna-kim.webp"}
-          message={" Anna Kim left the group Chess Club"}
-          time={"2 weeks ago"}
-          isRead={readStatus}
-        />
-      </div>
+      {Records.map((record) => {
+        return (
+          <NotificationItem
+            image={record.image}
+            name={record.message.name}
+            action={record.message.action}
+            timeElapsed={record.message.timeElapsed}
+            isRead={readStatus}
+          />
+        );
+      })}
     </>
   );
 };
